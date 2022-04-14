@@ -1,33 +1,16 @@
-<!--footer start-->
-<footer class="site-footer">
-    <div class="text-center">
-        <p>
-            &copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
-        </p>
-        <div class="credits">
-            <!--
-              You are NOT allowed to delete the credit link to TemplateMag with free version.
-              You can delete the credit link only if you bought the pro version.
-              Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
-              Licensing information: https://templatemag.com/license/
-            -->
-            Created with Dashio template by <a href="https://templatemag.com/">TemplateMag</a>
-        </div>
-        <a href="blank.html#" class="go-top">
-            <i class="fa fa-angle-up"></i>
-        </a>
-    </div>
-</footer>
-<!--footer end-->
-<!-- js placed at the end of the document so the pages load faster -->
-<script src="{{asset('assets')}}/admin/plugins/jquery/jquery.min.js"></script>
-<script src="{{asset('assets')}}/admin/plugins/bootstrap/js/bootstrap.min.js"></script>
-<script src="{{asset('assets')}}/admin/plugins/jquery-ui-1.9.2.custom.min.js"></script>
-<script src="{{asset('assets')}}/admin/plugins/jquery.ui.touch-punch.min.js"></script>
-<script class="include" type="text/javascript" src="{{asset('assets')}}/admin/plugins/jquery.dcjqaccordion.2.7.js"></script>
-<script src="{{asset('assets')}}/admin/plugins/jquery.scrollTo.min.js"></script>
-<script src="{{asset('assets')}}/admin/plugins/jquery.nicescroll.js" type="text/javascript"></script>
-<!--common script for all pages-->
-<script src="{{asset('assets')}}/admin/plugins/common-scripts.js"></script>
-<!--script for this page-->
-
+<!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="{{asset('assets')}}/admin/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{{asset('assets')}}/admin/js/off-canvas.js"></script>
+    <script src="{{asset('assets')}}/admin/js/hoverable-collapse.js"></script>
+    <script src="{{asset('assets')}}/admin/js/misc.js"></script>
+    <script src="{{asset('assets')}}/admin/js/settings.js"></script>
+    <script src="{{asset('assets')}}/admin/js/todolist.js"></script>
+<script src="{{asset('assets')}}/admin/js/file-upload.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <!-- End custom js for this page -->

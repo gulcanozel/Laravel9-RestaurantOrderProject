@@ -1,28 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
-
+<html lang="en">
 <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Dashboard">
-    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@yield("title")</title>
-
-    <!-- Favicons -->
-    <link src="{{asset('assets')}}/admin/img/favicon.png" rel="icon">
-    <link src="{{asset('assets')}}/admin/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-    <!-- Bootstrap core CSS -->
-    <link href="{{asset('assets')}}/admin/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!--external css-->
-    <link href="{{asset('assets')}}/admin/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <!-- Custom styles for this template -->
-    <link href="{{asset('assets')}}/admin/css/style.css" rel="stylesheet">
-    <link href="{{asset('assets')}}/admin/css/style-responsive.css" rel="stylesheet">
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{{asset('assets')}}/admin/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="{{asset('assets')}}/admin/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End Plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="{{asset('assets')}}/admin/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="{{asset('assets')}}/admin/images/favicon.png" />
     @yield("head")
 </head>
+
 <body>
+<div class="container-scroller">
 @include("admin.header")
 
 
@@ -36,5 +35,6 @@
 <@include("admin.footer")
 @yield('foot')
 
+</div>
 </body>
 </html>
