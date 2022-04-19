@@ -10,7 +10,7 @@
             <div class="content-wrapper">
 
                 <div class="page-header">
-                    <h3 class="page-title"> Category List </h3>
+                    <a href="/admin/category/create"class="btn btn-inverse-secondary btn-md">+ Add Category</a>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -48,9 +48,9 @@
                                         <td>{{$rs->description}}</td>
                                         <td>{{$rs->image}}</td>
                                         <td>{{$rs->status}}</td>
-                                        <td><a href="/admin/category/edit{{$rs->id}}" class="btn btn-primary btn-sm">Edit</a></td>
-                                        <td><a href="/admin/category/delete{{$rs->id}}" class="btn btn-danger btn-sm">Delete</a></td>
-                                        <td><a href="/admin/category/show{{$rs->id}}" class="btn btn-success btn-sm">Show</a></td>
+                                        <td><a href="/admin/category/edit/{{$rs->id}}" class="btn btn-primary btn-sm">Edit</a></td>
+                                        <td><a href="/admin/category/delete/{{$rs->id}}" class="btn btn-danger btn-sm">Delete</a></td>
+                                        <td><a href="/admin/category/show/{{$rs->id}}" class="btn btn-success btn-sm">Show</a></td>
                                     </tr>
 
                                     @endforeach
