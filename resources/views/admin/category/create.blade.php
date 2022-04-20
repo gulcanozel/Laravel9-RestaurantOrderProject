@@ -13,7 +13,7 @@
                     <h3 class="page-title"> Add Category</h3>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Add Category</li>
                         </ol>
                     </nav>
@@ -23,7 +23,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Category</h4>
-                            <form role="form" action="/admin/category/store" method="post">
+                            <form role="form" action="{{route('admin.category.create')}}" method="post">
                                 @csrf
                                 <div class="form-group">
                                     <label for="exampleInputName1">Title</label>
