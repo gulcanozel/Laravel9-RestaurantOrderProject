@@ -19,52 +19,54 @@
                     </nav>
                 </div>
 
-
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-header">
                             <h4 class="card-title">Category List</h4>
-                            </p>
                             <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th style="width: 10px">Id</th>
-                                        <th>Title</th>
-                                        <th>Keywords</th>
-                                        <th>Description</th>
-                                        <th>Image</th>
-                                        <th>Status</th>
-                                        <th style="width: 40px">Edit</th>
-                                        <th style="width: 40px">Delete</th>
-                                        <th style="width: 40px">Show</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($data as $rs)
-                                    <tr>
-                                        <td>{{$rs->id}}</td>
-                                        <td>{{$rs->title}}</td>
-                                        <td>{{$rs->keywords}}</td>
-                                        <td>{{$rs->description}}</td>
-                                        <td>{{$rs->image}}</td>
-                                        <td>{{$rs->status}}</td>
-                                        <td><a href="{{route('admin.category.edit',['id'=>$rs->id])}}" class="btn btn-primary btn-sm">Edit</a></td>
-                                        <td><a href="{{route('admin.category.destroy',['id'=>$rs->id])}}" class="btn btn-danger btn-sm"
-                                            onclick="return confirm('Deleting !! Are you sure ?')">Delete</a></td>
-                                        <td><a href="{{route('admin.category.show',['id'=>$rs->id])}}" class="btn btn-success btn-sm">Show</a></td>
-                                    </tr>
+                                <div class="card-body">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th style="width: 10px">Id</th>
+                                            <th>Parent</th>
+                                            <th>Title</th>
+                                            <th>Image</th>
+                                            <th style="width: 30px">Status</th>
+                                            <th style="width: 40px">Edit</th>
+                                            <th style="width: 40px">Delete</th>
+                                            <th style="width: 40px">Show</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($data as $rs)
+                                            <tr>
+                                                <td>{{$rs->id}}</td>
+                                                <td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs->title) }} </td>
+                                                <td>{{$rs->title}}</td>
+                                                <td>
+                                                    @if($rs->image)
+                                                    <img src="{{Storage::url($rs->image)}}" style="width:60px;height:60px;">
+                                                    @endif
+                                                </td>
+                                                <td>{{$rs->status}}</td>
+                                                <td><a href="{{route('admin.category.edit',['id'=>$rs->id])}}" class="btn btn-primary btn-sm">Edit</a></td>
+                                                <td><a href="{{route('admin.category.destroy',['id'=>$rs->id])}}" class="btn btn-danger btn-sm"
+                                                    onclick="return confirm('Deleting !! Are you sure ?')">Delete</a></td>
+                                                <td><a href="{{route('admin.category.show',['id'=>$rs->id])}}" class="btn btn-success btn-sm">Show</a></td>
+                                            </tr>
 
-                                    @endforeach
+                                        @endforeach
 
-
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
 
 
             </div>
+
             <!-- content-wrapper ends -->
             <!-- partial:../../partials/_footer.html -->
             <footer class="footer">

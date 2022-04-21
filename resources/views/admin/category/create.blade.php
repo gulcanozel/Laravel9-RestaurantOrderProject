@@ -23,8 +23,20 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Category</h4>
-                            <form role="form" action="{{route('admin.category.create')}}" method="post">
+                            <form role="form" action="{{route('admin.category.store')}}" method="post" enctype="multipart/form-data">
                                 @csrf
+
+                                <div class="form-group">
+                                    <label>Parent Category</label>
+
+                                    <select class="form-control" name="parent_id">
+                                        <option value="0" selected="selected">Main Category</option>
+                                        @foreach($data as $rs)
+                                            <option value="{{$rs->id}}">{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs->title) }} </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
                                 <div class="form-group">
                                     <label for="exampleInputName1">Title</label>
                                     <input type="text" class="form-control" name="title" placeholder="Title">
@@ -50,7 +62,7 @@
 
                                 <div class="form-group">
                                     <label>Image</label>
-                                    <input type="file" name="img[]" class="file-upload-default">
+                                    <input type="file" name="image" class="file-upload-default">
                                     <div class="input-group col-xs-12">
                                         <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
                                         <span class="input-group-append">
