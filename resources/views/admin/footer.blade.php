@@ -10,7 +10,7 @@
     <script src="{{asset('assets')}}/admin/js/misc.js"></script>
     <script src="{{asset('assets')}}/admin/js/settings.js"></script>
     <script src="{{asset('assets')}}/admin/js/todolist.js"></script>
-<script src="{{asset('assets')}}/admin/js/file-upload.js"></script>
+    <script src="{{asset('assets')}}/admin/js/file-upload.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
     <!-- End custom js for this page -->
