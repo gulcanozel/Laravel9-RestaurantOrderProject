@@ -1,8 +1,10 @@
 @extends('layouts.adminbase')
 
-@section('title', 'Edit Category :'.$data->title)
-
-
+@section('title', 'Edit Product :'.$data->title)
+@section('head')
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+@endsection
 @section('content')
     <div class="container-fluid page-body-wrapper">
         <!-- partial -->
@@ -57,16 +59,17 @@
                                     <input type="number" class="form-control" name="price" value="{{$data->price}}">
                                 </div>
 
-                                <div class="form-group">
+                                {{--<div class="form-group">
                                     <label for="exampleInputQuantity1">Quantity</label>
                                     <input type="number" class="form-control" name="quantity" value="{{$data->quantity}}">
-                                </div>
+                                </div>--}}
 
                                 <div class="form-group">
                                     <label for="exampleInputDetail1">Detail</label>
-                                    <textarea class="form-control" name="detail">
+                                    <textarea class="textarea" id="detail" name="detail">
                                         {{$data->detail}}
                                     </textarea>
+
                                 </div>
 
                                 <div class="form-group">
@@ -111,5 +114,17 @@
         </div>
         <!-- main-panel ends -->
     </div>
+@endsection
+@section('foot')
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+    <script>
+        $(function (){
+            //summernote
+            $('.textarea').summernote()
+        })
+    </script>
 
 @endsection
+
+

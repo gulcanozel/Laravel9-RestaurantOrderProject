@@ -50,15 +50,15 @@
                                     <tr>
                                         <th>Description</th>
                                         <td>{{$data->description}}</td>
-                                    </tr
+                                    </tr>
                                     <tr>
                                         <th>Price</th>
                                         <td>{{$data->price}}</td>
                                     </tr>
                                     <tr>
                                         <th>Detail</th>
-                                        <td>{{$data->detail}}</td>
-                                    </tr
+                                        <td>{!! $data->detail !!}</td>
+                                    </tr>
                                     <tr>
                                         <th>Image</th>
                                         <td>

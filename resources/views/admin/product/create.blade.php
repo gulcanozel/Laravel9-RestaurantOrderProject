@@ -1,7 +1,9 @@
 @extends('layouts.adminbase')
 
 @section('title', 'Add Product')
-
+@section('head')
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+@endsection
 
 @section('content')
     <div class="container-fluid page-body-wrapper">
@@ -56,15 +58,26 @@
                                     <input type="number" class="form-control" name="price" value="0">
                                 </div>
 
-                                <div class="form-group">
+                                {{--<div class="form-group">
                                     <label for="exampleInputquantity1">Quantity</label>
                                     <input type="number" class="form-control" name="quantity" value="0">
-                                </div>
+                                </div>--}}
 
                                 <div class="form-group">
                                     <label for="exampleInputdetail1">Detail</label>
-                                    <textarea class="form-control" name="detail">
+                                    <textarea class="textarea" id="detail" name="detail">
+
                                     </textarea>
+                                    <script>
+                                        ClassicEditor
+                                            .create( document.querySelector( '#detail' ) )
+                                            .then( editor => {
+                                                console.log( editor );
+                                            } )
+                                            .catch( error => {
+                                                console.error( error );
+                                            } );
+                                    </script>
                                 </div>
 
                                 <div class="form-group">
