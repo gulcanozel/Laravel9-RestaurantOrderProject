@@ -42,6 +42,8 @@
 
 @show
 
+@section('slider')
+@show
 
 @yield('content')
 

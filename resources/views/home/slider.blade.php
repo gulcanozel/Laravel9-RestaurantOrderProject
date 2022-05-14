@@ -1,12 +1,13 @@
 <!-- Start slides -->
 <div id="slides" class="cover-slides">
     <ul class="slides-container">
+        @foreach($sliderdata as $rs)
         <li class="text-center">
-            <img src="{{asset('assets')}}/img/slider-01.jpg" alt="">
+            <img src="{{Storage::url($rs->image)}}" style="width: 1920px;height: 1280px">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1 class="m-b-20"><strong>Welcome To <br> Yamifood Restaurant</strong></h1>
+                        <h1 class="m-b-20"><strong>{{$rs->title}}</strong></h1>
                         <p class="m-b-40">See how your users experience your website in realtime or view  <br>
                             trends to see any changes in performance over time.</p>
                         <p><a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Reservation</a></p>
@@ -14,6 +15,7 @@
                 </div>
             </div>
         </li>
+        @endforeach
         <li class="text-center">
             <img src="{{asset('assets')}}/img/slider-02.jpg" alt="">
             <div class="container">
