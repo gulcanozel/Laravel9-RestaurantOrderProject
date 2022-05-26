@@ -14,7 +14,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12">
-                    <img src="{{asset('assets')}}/img/about-img.jpg" alt="" class="img-fluid">
+                    <img src="{{asset('assets')}}/images/about-img.jpg" alt="" class="img-fluid">
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 text-center">
                     <div class="inner-column">
@@ -70,158 +70,48 @@
             </div>
 
             <div class="row special-list">
-                <div class="col-lg-4 col-md-6 special-grid drinks">
+                @foreach($productlist1 as $rs)
+                <div class="col-lg-4 col-md-6 special-grid">
                     <div class="gallery-single fix">
-                        <img src="{{asset('assets')}}/img/img-01.jpg" class="img-fluid" alt="Image">
+                        <img src={{Storage::url($rs->image)}} class="img-fluid" alt="Image">
                         <div class="why-text">
-                            <h4>Special Drinks 1</h4>
-                            <p>Sed id magna vitae eros sagittis euismod.</p>
-                            <h5> $7.79</h5>
+                            <h4>{{$rs->title}}</h4>
+                            <p>{{$rs->description}}</p>
+                            <h5> {{$rs->price}} ₺</h5>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-lg-4 col-md-6 special-grid drinks">
-                    <div class="gallery-single fix">
-                        <img src="{{asset('assets')}}/img/img-02.jpg" class="img-fluid" alt="Image">
-                        <div class="why-text">
-                            <h4>Special Drinks 2</h4>
-                            <p>Sed id magna vitae eros sagittis euismod.</p>
-                            <h5> $9.79</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 special-grid drinks">
-                    <div class="gallery-single fix">
-                        <img src="{{asset('assets')}}/img/img-03.jpg" class="img-fluid" alt="Image">
-                        <div class="why-text">
-                            <h4>Special Drinks 3</h4>
-                            <p>Sed id magna vitae eros sagittis euismod.</p>
-                            <h5> $10.79</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 special-grid lunch">
-                    <div class="gallery-single fix">
-                        <img src="{{asset('assets')}}/img/img-04.jpg" class="img-fluid" alt="Image">
-                        <div class="why-text">
-                            <h4>Special Lunch 1</h4>
-                            <p>Sed id magna vitae eros sagittis euismod.</p>
-                            <h5> $15.79</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 special-grid lunch">
-                    <div class="gallery-single fix">
-                        <img src="{{asset('assets')}}/img/img-05.jpg" class="img-fluid" alt="Image">
-                        <div class="why-text">
-                            <h4>Special Lunch 2</h4>
-                            <p>Sed id magna vitae eros sagittis euismod.</p>
-                            <h5> $18.79</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 special-grid lunch">
-                    <div class="gallery-single fix">
-                        <img src="{{asset('assets')}}/img/img-06.jpg" class="img-fluid" alt="Image">
-                        <div class="why-text">
-                            <h4>Special Lunch 3</h4>
-                            <p>Sed id magna vitae eros sagittis euismod.</p>
-                            <h5> $20.79</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 special-grid dinner">
-                    <div class="gallery-single fix">
-                        <img src="{{asset('assets')}}/img/img-07.jpg" class="img-fluid" alt="Image">
-                        <div class="why-text">
-                            <h4>Special Dinner 1</h4>
-                            <p>Sed id magna vitae eros sagittis euismod.</p>
-                            <h5> $25.79</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 special-grid dinner">
-                    <div class="gallery-single fix">
-                        <img src="{{asset('assets')}}/img/img-08.jpg" class="img-fluid" alt="Image">
-                        <div class="why-text">
-                            <h4>Special Dinner 2</h4>
-                            <p>Sed id magna vitae eros sagittis euismod.</p>
-                            <h5> $22.79</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 special-grid dinner">
-                    <div class="gallery-single fix">
-                        <img src="{{asset('assets')}}/img/img-09.jpg" class="img-fluid" alt="Image">
-                        <div class="why-text">
-                            <h4>Special Dinner 3</h4>
-                            <p>Sed id magna vitae eros sagittis euismod.</p>
-                            <h5> $24.79</h5>
-                        </div>
-                    </div>
-                </div>
-
+                @endforeach
             </div>
         </div>
     </div>
     <!-- End Menu -->
 
-    <!-- Start Gallery -->
+    <!-- Products -->
     <div class="gallery-box">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="heading-title text-center">
-                        <h2>Gallery</h2>
+                        <h2>Our Products</h2>
                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
                     </div>
                 </div>
             </div>
             <div class="tz-gallery">
                 <div class="row">
+                    @foreach($productlist1 as $rs)
                     <div class="col-sm-12 col-md-4 col-lg-4">
-                        <a class="lightbox" href="{{asset('assets')}}/img/gallery-img-01.jpg">
-                            <img class="img-fluid" src="{{asset('assets')}}/img/gallery-img-01.jpg" alt="Gallery Images">
+                        <a class="lightbox" href="{{route('product',['id'=>$rs->id])}}">
+                            <img class="img-fluid" src="{{Storage::url($rs->image)}}" alt="Gallery Images">
                         </a>
                     </div>
-                    <div class="col-sm-6 col-md-4 col-lg-4">
-                        <a class="lightbox" href="{{asset('assets')}}/img/gallery-img-02.jpg">
-                            <img class="img-fluid" src="{{asset('assets')}}/img/gallery-img-02.jpg" alt="Gallery Images">
-                        </a>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-4">
-                        <a class="lightbox" href="{{asset('assets')}}/img/gallery-img-03.jpg">
-                            <img class="img-fluid" src="{{asset('assets')}}/img/gallery-img-03.jpg" alt="Gallery Images">
-                        </a>
-                    </div>
-                    <div class="col-sm-12 col-md-4 col-lg-4">
-                        <a class="lightbox" href="{{asset('assets')}}/img/gallery-img-04.jpg">
-                            <img class="img-fluid" src="{{asset('assets')}}/img/gallery-img-04.jpg" alt="Gallery Images">
-                        </a>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-4">
-                        <a class="lightbox" href="{{asset('assets')}}/img/gallery-img-05.jpg">
-                            <img class="img-fluid" src="{{asset('assets')}}/img/gallery-img-05.jpg" alt="Gallery Images">
-                        </a>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-4">
-                        <a class="lightbox" href="{{asset('assets')}}/img/gallery-img-06.jpg">
-                            <img class="img-fluid" src="{{asset('assets')}}/img/gallery-img-06.jpg" alt="Gallery Images">
-                        </a>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
-    <!-- End Gallery -->
+    <!-- End products -->
 
     <!-- Start Customer Reviews -->
     <div class="customer-reviews-box">
@@ -240,7 +130,7 @@
                         <div class="carousel-inner mt-4">
                             <div class="carousel-item text-center active">
                                 <div class="img-box p-1 border rounded-circle m-auto">
-                                    <img class="d-block w-100 rounded-circle" src="{{asset('assets')}}/img/profile-1.jpg" alt="">
+                                    <img class="d-block w-100 rounded-circle" src="{{asset('assets')}}/images/profile-1.jpg" alt="">
                                 </div>
                                 <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Paul Mitchel</strong></h5>
                                 <h6 class="text-dark m-0">Web Developer</h6>
@@ -248,7 +138,7 @@
                             </div>
                             <div class="carousel-item text-center">
                                 <div class="img-box p-1 border rounded-circle m-auto">
-                                    <img class="d-block w-100 rounded-circle" src="{{asset('assets')}}/img/profile-3.jpg" alt="">
+                                    <img class="d-block w-100 rounded-circle" src="{{asset('assets')}}/images/profile-3.jpg" alt="">
                                 </div>
                                 <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Steve Fonsi</strong></h5>
                                 <h6 class="text-dark m-0">Web Designer</h6>
@@ -256,7 +146,7 @@
                             </div>
                             <div class="carousel-item text-center">
                                 <div class="img-box p-1 border rounded-circle m-auto">
-                                    <img class="d-block w-100 rounded-circle" src="{{asset('assets')}}/img/profile-7.jpg" alt="">
+                                    <img class="d-block w-100 rounded-circle" src="{{asset('assets')}}/images/profile-7.jpg" alt="">
                                 </div>
                                 <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Daniel vebar</strong></h5>
                                 <h6 class="text-dark m-0">Seo Analyst</h6>
