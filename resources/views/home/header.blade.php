@@ -8,23 +8,37 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            @php
+                $mainCategories= \App\Http\Controllers\HomeController::maincategorylist()
+            @endphp
             <div class="collapse navbar-collapse" id="navbars-rs-food">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+
+                    <li class="nav-item active"><a class="nav-link" href="{{'home'}}">Home</a></li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Menu</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                                <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Foods</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                                @foreach($mainCategories as $rs)
+                                <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">{{$rs->title}}</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                                    <a class="dropdown-item" href="maincourse.html">Main Course</a>
+                                    <div class="dropdown-item">
+                                        @if (is_countable($rs) && count($rs) > 0) :
+                                            @if(count($rs->children))
+                                                @include('home.categorytree',['children'=>$rs->children])
+                                            @endif
+                                        @endif
+                                    </div>
                                     <a class="dropdown-item" href="pizza.html">Pizza</a>
                                     <a class="dropdown-item" href="snacks.html">Snacks</a>
                                 </div>
-                            <a class="dropdown-item" href="drinks.html">Drinks</a>
-                            <a class="dropdown-item" href="cakes.html">Cookies and Cakes</a>
-                        </div>
+                                @endforeach
+                            </div>
+
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="{{'about'}}">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{'references'}}">References</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-a">
@@ -40,7 +54,27 @@
                             <a class="dropdown-item" href="blog-details.html">blog Single</a>
                         </div>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('faq')}}">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('contact')}}">Contact</a></li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">deneme</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                            @foreach($mainCategories as $rs)
+                                <a class="nav-link dropdown-toggle" href="#" id="dropdown-a"data-toggle="dropdown">{{$rs->title}}</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown-a">
+
+                                </div>
+                                @if (is_countable($rs) && count($rs) >= 0) :
+                                @if(count($rs->children))
+                                    @include('home.categorytree',['children'=>$rs->children])
+                                @endif
+                                @endif
+                            @endforeach
+                        </div>
+
+                    </li>
+
                 </ul>
             </div>
         </div>

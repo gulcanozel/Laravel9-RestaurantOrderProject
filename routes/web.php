@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminPanel\AdminProductController;
+use App\Http\Controllers\AdminPanel\FaqController;
 use App\Http\Controllers\AdminPanel\ImageController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -26,8 +27,13 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-//3-Call Controller Function
+//***************** HOME PAGE ROUTES *****************
 Route::get('/',[HomeController::class,'index'])->name('home');
+Route::get('/about',[HomeController::class,'about'])->name('about');
+Route::get('/references',[HomeController::class,'references'])->name('references');
+Route::get('/contact',[HomeController::class,'contact'])->name('contact');
+//Route::post('/storemessage',[HomeController::class,'storemessage'])->name('storemessage');
+Route::get('/faq',[HomeController::class,'faq'])->name('faq');
 
 //4- Route->Controller->View
 Route::get('/test',[HomeController::class,'test'])->name('test');
@@ -35,9 +41,12 @@ Route::get('/test',[HomeController::class,'test'])->name('test');
 //5- Route with parameters
 Route::get('/param/{id}/{number}',[HomeController::class,'param'])->name('param');
 
+
 //6- Route with post
 Route::post('/save',[HomeController::class,'save'])->name('save');
 
+Route::get('/product/{id}',[HomeController::class,'product'])->name('product');
+Route::get('/categoryproducts/{id}/{slug}',[HomeController::class,'categoryproducts'])->name('categoryproducts');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -45,7 +54,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 //***************** ADMIN PANEL ROUTES *****************
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/admin', [AdminHomeController::class, 'index'])->name('index');
+    Route::get('/', [AdminHomeController::class, 'index'])->name('index');
+//***************** General Routes ROUTES *****************
+    Route::get('/setting', [AdminHomeController::class, 'setting'])->name('setting');
+    Route::post('/setting.update', [AdminHomeController::class, 'settingUpdate'])->name('setting.update');
 
 //***************** ADMIN CATEGORY ROUTES *****************
     Route::prefix('/category')->name('category.')->controller(AdminCategoryController::class)->group(function () {
@@ -75,5 +87,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/store/{pid}','store')->name('store');
         Route::get('/destroy/{pid}/{id}', 'destroy')->name('destroy');
 
+    });
+
+    //***************** ADMİN FAQ ROUTES *****************
+    Route::prefix('/faq')->name('faq.')->controller(FaqController::class)->group(function () {
+        Route::get('/','index')->name('index');
+        Route::get('/create','create')->name('create');
+        Route::post('/store','store')->name('store');
+        Route::get('/edit/{id}','edit')->name('edit');
+        Route::post('/update/{id}','update')->name('update');
+        Route::get('/destroy/{id}', 'destroy')->name('destroy');
+        Route::get('/show/{id}', 'show')->name('show');
     });
 });
