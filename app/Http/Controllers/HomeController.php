@@ -52,7 +52,7 @@ class HomeController extends Controller
     public function faq()
     {
         $setting=Setting::first();
-        $datalist=Faq::first();
+        $datalist=Faq::all();
         return view('home.faq', [
             'setting' => $setting,
             'datalist' => $datalist

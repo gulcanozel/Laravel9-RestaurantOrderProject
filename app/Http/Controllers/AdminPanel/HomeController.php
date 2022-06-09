@@ -13,15 +13,28 @@ class HomeController extends Controller
     {
         return view("admin.index");
     }
+
+    public function setting()
+    {
+        $data = Setting::first();
+        if ($data == null) {
+            $data = new Setting();
+            $data->title = 'Project Title';
+            $data->save();
+            $data = Setting::first();
+        }
+        return view("admin.setting", ['data' => $data]);
+    }
     public function settingUpdate(Request $request)
     {
         $id=$request->input('id');
-        $data=Setting::find($id);
+
+        $data = Setting::find($id);
         $data->title=$request->input('title');
-        $data->keyword=$request->input('keyword');
+        $data->keywords=$request->input('keywords');
         $data->description=$request->input('description');
         $data->company=$request->input('company');
-        $data->adress=$request->input('adress');
+        $data->address=$request->input('address');
         $data->phone=$request->input('phone');
         $data->fax=$request->input('fax');
         $data->email=$request->input('email');
@@ -37,7 +50,6 @@ class HomeController extends Controller
         $data->references=$request->input('references');
         if($request->file('icon')){
             $data->icon=$request->file('icon')->store('images');
-
         }
         $data->status=$request->input('status');
         $data->save();
@@ -45,21 +57,7 @@ class HomeController extends Controller
 
 
 
-
-
-
     }
 
-    public function setting()
-    {
-        $data=Setting::first();
-        if($data==null)
-        {
-            $data = new Setting();
-            $data->title = 'Project Title';
-            $data->save();
-            $data = Setting::first();
-        }
-        return view("admin.setting",['data' => $data]);
-    }
+
 }

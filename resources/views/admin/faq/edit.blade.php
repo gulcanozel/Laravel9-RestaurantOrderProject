@@ -24,7 +24,7 @@
                 <div class="col-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">FAQElements</h4>
+                            <h4 class="card-title">FAQ</h4>
                             <form role="form" action="{{route('admin.faq.update',['id'=>$data->id])}}" method="post" enctype="multipart/form-data">
                                 @csrf
 

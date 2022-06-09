@@ -4,7 +4,12 @@
 @section('description', $setting->description)
 @section('keywords', $setting->keyword)
 @section('icon',Storage::url($setting->icon))
-
+@section('head')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+@endsection
 
 @section('content')
     <!-- Start header -->
@@ -29,10 +34,24 @@
     <div class="about-section-box">
         <div class="container">
             <div class="row">
-                @foreach($datalist as $rs)
-                    <h2>{{$rs->question}}</h2>
-                    <p>{!! $rs->answer !!}}</p>
-                @endforeach
+                <div id="accordion">
+                    @foreach($datalist as $rs)
+                        <div class="card">
+                            <div class="card-header">
+                                <a class="card-link" data-toggle="collapse" href="#collapse{{$loop->iteration}}">
+                                    {{$rs->question}}
+                                </a>
+                            </div>
+
+                            <div id="collapse{{$loop->iteration}}" class="collapse @once show @endonce" data-parent="#accordion">
+                                <div class="card-body">
+                                    {!! $rs->answer !!}
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                </div>
             </div>
         </div>
     </div>
