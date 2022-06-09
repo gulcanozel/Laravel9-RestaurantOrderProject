@@ -5,6 +5,7 @@
             <a class="navbar-brand" href="index.html">
                 <img src="{{asset('assets')}}/images/logo.png" alt="" />
             </a>
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -58,21 +59,16 @@
                     <li class="nav-item"><a class="nav-link" href="{{route('contact')}}">Contact</a></li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">deneme</a>
+                        @auth()
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">{{Auth::user()->name}}</a>
+                            <a class="dropdown-item" href="/logoutuser">Logout</a>
+                        @endauth
+                        @guest()
+                            <a class="dropdown-item" href="/loginuser">Login</a><a class="dropdown-item" href="/registeruser">Register</a>
+                        @endguest
                         <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                            @foreach($mainCategories as $rs)
-                                <a class="nav-link dropdown-toggle" href="#" id="dropdown-a"data-toggle="dropdown">{{$rs->title}}</a>
-                                <div class="dropdown-menu" aria-labelledby="dropdown-a">
-
-                                </div>
-                                @if (is_countable($rs) && count($rs) >= 0) :
-                                @if(count($rs->children))
-                                    @include('home.categorytree',['children'=>$rs->children])
-                                @endif
-                                @endif
-                            @endforeach
+                            <a class="dropdown-item" href="reservation.html">My Account</a>
                         </div>
-
                     </li>
 
                 </ul>

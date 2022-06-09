@@ -7,6 +7,7 @@ use App\Models\Faq;
 use App\Models\Product;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -76,6 +77,18 @@ class HomeController extends Controller
             'images'=>$images
         ]);
     }
+    public function categoryproducts($id)
+    {
+        $category=Category::find($id);
+        dd($category);
+        $products=DB::table('products')->where('category_id',$id)->get();
+        return view('home.categoryproducts',[
+            'category'=>$category,
+            'products'=>$products
+        ]);
+    }
+
+
 
     public function test()
     {
@@ -107,4 +120,13 @@ class HomeController extends Controller
         ]);
     }
 
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
+    }
 }
+
+
