@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Faq;
 use App\Models\Product;
 use App\Models\Setting;
+use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -34,21 +35,31 @@ class HomeController extends Controller
     }
     public function references()
     {
-        echo"references";
-        exit();
         $setting = Setting::first();
-        return view('home.index', [
+        return view('home.references', [
             'setting' => $setting
         ]);
     }
     public function contact()
     {
-        echo"contact";
-        exit();
         $setting=Setting::first();
         return view('home.contact', [
             'setting' => $setting
         ]);
+    }
+    public function storemessage(Request $request)
+    {
+        //dd($request);
+        $data = new Message();
+        $data->name = $request->input('name');
+        $data->email = $request->input('email');
+        $data->phone = $request->input('phone');
+        $data->subject = $request->input('subject');
+        $data->message = $request->input('message');
+        $data->ip=request()->ip();
+        $data->save();
+
+        return redirect()->route('contact')->with('info','Your message has been sent,Thank you.');
     }
     public function faq()
     {
@@ -126,6 +137,25 @@ class HomeController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');
+    }
+
+    public function loginadmincheck(Request $request)
+    {
+        //dd($request);
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended('/admin');
+        }
+
+        return back()->withErrors([
+            'error' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     }
 }
 
