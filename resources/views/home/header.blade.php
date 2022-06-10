@@ -61,14 +61,20 @@
                     <li class="nav-item dropdown">
                         @auth()
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">{{Auth::user()->name}}</a>
-                            <a class="dropdown-item" href="/logoutuser">Logout</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                                <a class="dropdown-item fa fa-user" href="{{route('userpanel.index')}}">  My Account</a>
+                                <a class="dropdown-item fa fa-heart" href="#">  My Orders</a>
+                                <a class="dropdown-item fa fa-comment" href="{{route('userpanel.reviews')}}">  My Reviews</a>
+                                <a class="dropdown-item fa fa-check" href="#">  Checkout</a>
+                                <a class="dropdown-item fa fa-user-times" href="/logoutuser">  Logout</a>
+                            </div>
                         @endauth
                         @guest()
-                            <a class="dropdown-item" href="/loginuser">Login</a><a class="dropdown-item" href="/registeruser">Register</a>
+                                <div class="template-demo" role="group" aria-label="Basic example">
+                                    <a class="btn-lg" href="/loginuser">Login</a>
+                                    <a class="btn-lg" href="/registeruser">Register</a>
+                                </div>
                         @endguest
-                        <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                            <a class="dropdown-item" href="reservation.html">My Account</a>
-                        </div>
                     </li>
 
                 </ul>
