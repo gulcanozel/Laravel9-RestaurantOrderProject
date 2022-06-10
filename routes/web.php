@@ -32,8 +32,14 @@ Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/about',[HomeController::class,'about'])->name('about');
 Route::get('/references',[HomeController::class,'references'])->name('references');
 Route::get('/contact',[HomeController::class,'contact'])->name('contact');
-//Route::post('/storemessage',[HomeController::class,'storemessage'])->name('storemessage');
+Route::post('/storemessage',[HomeController::class,'storemessage'])->name('storemessage');
 Route::get('/faq',[HomeController::class,'faq'])->name('faq');
+Route::post('/storecomment',[HomeController::class,'storecomment'])->name('storecomment');
+Route::view('/loginuser','home.login');
+Route::view('/registeruser','home.register');
+Route::get('/logoutuser',[HomeController::class,'logout'])->name('logoutuser');
+Route::view('/loginadmin','admin.login');
+Route::post('/loginadmincheck',[HomeController::class,'loginadmincheck'])->name('loginadmincheck');
 
 //4- Route->Controller->View
 Route::get('/test',[HomeController::class,'test'])->name('test');
