@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminPanel\AdminProductController;
+use App\Http\Controllers\AdminPanel\AdminUserController;
+use App\Http\Controllers\AdminPanel\CommentController;
 use App\Http\Controllers\AdminPanel\FaqController;
 use App\Http\Controllers\AdminPanel\ImageController;
 use App\Http\Controllers\AdminPanel\MessageController;
@@ -36,10 +38,10 @@ Route::get('/contact',[HomeController::class,'contact'])->name('contact');
 Route::post('/storemessage',[HomeController::class,'storemessage'])->name('storemessage');
 Route::get('/faq',[HomeController::class,'faq'])->name('faq');
 Route::post('/storecomment',[HomeController::class,'storecomment'])->name('storecomment');
-Route::view('/loginuser','home.login');
-Route::view('/registeruser','home.register');
+Route::view('/loginuser','home.login')->name('loginuser');
+Route::view('/registeruser','home.register')->name('registeruser');
 Route::get('/logoutuser',[HomeController::class,'logout'])->name('logoutuser');
-Route::view('/loginadmin','admin.login');
+Route::view('/loginadmin','admin.login')->name('loginadmin');
 Route::post('/loginadmincheck',[HomeController::class,'loginadmincheck'])->name('loginadmincheck');
 
 //4- Route->Controller->View
@@ -60,7 +62,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 //***************** ADMIN PANEL ROUTES *****************
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminHomeController::class, 'index'])->name('index');
 //***************** General Routes ROUTES *****************
     Route::get('/setting', [AdminHomeController::class, 'setting'])->name('setting');
@@ -114,5 +116,27 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/update/{id}','update')->name('update');
         Route::get('/destroy/{id}', 'destroy')->name('destroy');
         Route::get('/show/{id}', 'show')->name('show');
+    });
+
+    //***************** ADMIN COMMENT ROUTES *****************
+    Route::prefix('/comment')->name('comment.')->controller(CommentController::class)->group(function () {
+        Route::get('/','index')->name('index');
+        Route::get('/show/{id}', 'show')->name('show');
+        Route::post('/update/{id}','update')->name('update');
+        Route::get('/destroy/{id}', 'destroy')->name('destroy');
+
+    });
+
+    //***************** ADMIN USER ROUTES *****************
+    Route::prefix('/user')->name('user.')->controller(AdminUserController::class)->group(function () {
+        Route::get('/','index')->name('index');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::get('/show/{id}', 'show')->name('show');
+        Route::post('/update/{id}','update')->name('update');
+        Route::get('/destroy/{id}', 'destroy')->name('destroy');
+        Route::post('/addrole/{id}','addrole')->name('addrole');
+        Route::get('/destroyrole/{uid}/{rid}', 'destroyrole')->name('destroyrole');
+
+
     });
 });
