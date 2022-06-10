@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminPanel\AdminProductController;
 use App\Http\Controllers\AdminPanel\FaqController;
 use App\Http\Controllers\AdminPanel\ImageController;
+use App\Http\Controllers\AdminPanel\MessageController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminPanel\HomeController as AdminHomeController;
@@ -95,6 +96,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     });
 
+    //***************** ADMIN MESSAGE ROUTES *****************
+    Route::prefix('/message')->name('message.')->controller(MessageController::class)->group(function () {
+        Route::get('/','index')->name('index');
+        Route::get('/show/{id}', 'show')->name('show');
+        Route::post('/update/{id}','update')->name('update');
+        Route::get('/destroy/{id}', 'destroy')->name('destroy');
+
+
+    });
     //***************** ADMİN FAQ ROUTES *****************
     Route::prefix('/faq')->name('faq.')->controller(FaqController::class)->group(function () {
         Route::get('/','index')->name('index');
