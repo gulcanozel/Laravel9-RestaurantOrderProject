@@ -34,9 +34,21 @@
                         <h1>{{ $data->title }}</h1>
                         <h4>{!! $data->detail !!}</h4>
                         <h1>{{ $data->price }} ₺</h1>
-                        <a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Order</a>
                     </div>
+
+
+
+                        <div class="inner-column">
+                            <form action="{{route('shopcart.store')}}" method="post">
+                                @csrf
+                                <span class="text-uppercase"> QTY: </span>
+                                <input class="input-sm" name="quantity" type="number" value="1" min="1" max="{{$rs->product->quantity}}">
+                                <input class="input-sm" name="id" value="{{$data->id}}" type="hidden">
+                            <button type="submit" class="btn btn-lg btn-circle btn-outline-new-white">Order</button>
+                            </form>
+                        </div>
                 </div>
+
 
                 <div class="gallery-box">
                     <div class="container-fluid">
